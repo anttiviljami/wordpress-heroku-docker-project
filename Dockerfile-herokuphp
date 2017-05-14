@@ -83,6 +83,6 @@ ONBUILD ADD . /app/user/
 # run install hooks
 ONBUILD RUN cat composer.json | python -c 'import sys,json; sys.exit("post-install-cmd" not in json.load(sys.stdin).get("scripts", {}));' && composer run-script post-install-cmd || true
 
-# TODO: run "composer compile", like Heroku?
+# Export heroku bin
+ENV PATH /app/user/bin:$PATH
 
-# ENTRYPOINT ["/usr/bin/init.sh"]

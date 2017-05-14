@@ -48,8 +48,7 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "/bin/bash -c \"rm -r htdocs/wordpress/wp-content && ln -s ../wp-content htdocs/wordpress/wp-content\"",
-      "/bin/bash -c \"[[ -f bin/wp ]] || ln -s vendor/wp-cli/wp-cli/bin/wp bin/wp\""
+      "/bin/bash -c \"rm -r htdocs/wordpress/wp-content; ln -s ../wp-content htdocs/wordpress/wp-content\""
     ]
   }
 }
