@@ -1,0 +1,49 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-herokuphp
+    image: herokuphp
+    command: 'bash -c "source .env && tools/start-web.sh"'
+    working_dir: /app/user
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app/user
+    links:
+      - mysql
+      - redis
+
+  shell:
+    build:
+      context: .
+      dockerfile: Dockerfile-herokuphp
+    image: herokuphp
+    command: 'bash -c "source .env && bash"'
+    working_dir: /app/user
+    volumes:
+      - .:/app/user
+    links:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:latest
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: password
+
+  redis:
+    image: redis:3.2
+    ports:
+      - 6379:6379
+
+volumes:
+  mysqldata: {}

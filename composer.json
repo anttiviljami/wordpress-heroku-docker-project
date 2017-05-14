@@ -30,6 +30,9 @@
     "koodimonni-language/fi": "*",
     "wpackagist-theme/twentyseventeen": "*"
   },
+  "require-dev": {
+    "heroku/heroku-buildpack-php": "*"
+  },
   "extra": {
     "installer-paths": {
       "htdocs/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
