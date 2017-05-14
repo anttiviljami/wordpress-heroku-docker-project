@@ -1,6 +1,8 @@
 #!/bin/bash
 # NOTE: Run this only from project root!
 
+DEBIAN_FRONTEND=noninteractive
+
 # Run all test commands and if one fails, exit non-zero return code
 EXIT_STATUS=0
 
