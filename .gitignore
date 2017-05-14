@@ -1,0 +1,26 @@
+.env
+.env.*
+!.env*sample
+
+vendor/*
+!vendor/.gitkeep
+
+bin/wp
+!bin/.gitkeep
+
+# WordPress core
+htdocs/wordpress
+
+htdocs/wp-content/plugins/*
+!htdocs/wp-content/plugins/.gitkeep
+htdocs/wp-content/themes/twenty*
+!htdocs/wp-content/themes/.gitkeep
+htdocs/wp-content/languages/*
+!htdocs/wp-content/languages/.gitkeep
+htdocs/wp-content/upgrade
+htdocs/wp-content/uploads/*
+!htdocs/wp-content/uploads/.gitkeep
+
+# Note: WP-content is mostly meant to be populated via composer
+# If you create custom plugins, force add it to git so that it's tracked
+# If you create custom themes, they are automatically tracked in git

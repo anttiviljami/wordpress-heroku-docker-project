@@ -1,0 +1,52 @@
+{
+  "name": "anttiviljami/wordpress-project",
+  "description": "WordPress project template for Heroku and local Docker",
+  "type": "project",
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Viljami Kuosmanen",
+      "email": "viljami@avoinsorsa.fi"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://wp-languages.github.io"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "johnpbloch/wordpress": "*",
+    "composer/installers": "v1.0.12",
+    "vlucas/phpdotenv": "^2.0.1",
+    "oscarotero/env": "^1.0",
+    "wp-cli/wp-cli" : "*",
+    "koodimonni/composer-dropin-installer": "*",
+    "koodimonni-language/fi": "*",
+    "wpackagist-theme/twentyseventeen": "*"
+  },
+  "extra": {
+    "installer-paths": {
+      "htdocs/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "htdocs/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "htdocs/wp-content/themes/{$name}": ["type:wordpress-theme"]
+    },
+    "dropin-paths": {
+      "htdocs/wp-content/languages/": ["vendor:koodimonni-language"],
+      "htdocs/wp-content/languages/plugins/": ["vendor:koodimonni-plugin-language"],
+      "htdocs/wp-content/languages/themes/": ["vendor:koodimonni-theme-language"]
+    },
+    "wordpress-install-dir": "htdocs/wordpress"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "/bin/bash -c \"rm -r htdocs/wordpress/wp-content && ln -s ../wp-content htdocs/wordpress/wp-content\"",
+      "/bin/bash -c \"[[ -f bin/wp ]] || ln -s vendor/wp-cli/wp-cli/bin/wp bin/wp\""
+    ]
+  }
+}
