@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<ruleset name="anttiviljami-wordpress">
+  <description>For nicer WordPress and PHP development</description>
+
+  <!-- Exclude wp core files -->
+  <exclude-pattern>/wordpress/wp-admin/*</exclude-pattern>
+  <exclude-pattern>/wordpress/wp-includes/*</exclude-pattern>
+  <exclude-pattern>/wordpress/wp-*.php</exclude-pattern>
+  <exclude-pattern>/wordpress/index.php</exclude-pattern>
+  <exclude-pattern>/wordpress/xmlrpc.php</exclude-pattern>
+  <exclude-pattern>/wordpress/</exclude-pattern>
+  <exclude-pattern>/themes/twenty*</exclude-pattern>
+
+  <!-- Don't check composer dependencies -->
+  <exclude-pattern>/vendor/</exclude-pattern>
+
+  <!-- Exclude language files -->
+  <exclude-pattern>/lang/</exclude-pattern>
+
+  <!-- This is from roots/bedrock and keep it as is -->
+  <exclude-pattern>/mu-plugins/bedrock-autoloader.php</exclude-pattern>
+
+  <!-- S3-uploads is 3rd party code -->
+  <exclude-pattern>/plugins/s3-uploads/*</exclude-pattern>
+
+  <!-- Disallow tabs altogether -->
+  <rule ref="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+
+  <!-- Use 2 spaces for indentation -->
+  <arg name="tab-width" value="2"/>
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+
+  <!--
+    The soft limit on line length MUST be 120 characters
+    automated style checkers MUST warn but MUST NOT error at the soft limit.
+  -->
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="120"/>
+      <property name="absoluteLineLimit" value="0"/>
+    </properties>
+  </rule>
+
+  <!-- All PHP files MUST use the Unix LF (linefeed) line ending. -->
+  <rule ref="Generic.Files.LineEndings">
+    <properties>
+      <property name="eolChar" value="\n"/>
+    </properties>
+  </rule>
+
+  <!-- Method arguments with default values MUST go at the end of the argument list. -->
+  <rule ref="PEAR.Functions.ValidDefaultValue"/>
+
+  <!-- This means almost always that developer used an ugly hotfix -->
+  <rule ref="Squiz.PHP.CommentedOutCode"/>
+
+  <!-- Don't allow random whitespacing into multiple lines-->
+  <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+
+  <!-- Don't put unused function parameters into function definition -->
+  <!-- This might be problematic when using wp actions/filters -->
+  <!-- This is mostly useful, We should give warning instead -->
+  <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+  <!-- No TODO comments, open issues in github/gogs/gitlab instead -->
+  <rule ref="Generic.Commenting.Todo"/>
+
+  <!-- Don't allow oneliner ifs without brackets {} -->
+  <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+  <!-- No spaces before comma in function calls -->
+  <!-- This might be problematic when using wp actions/filters -->
+  <rule ref="Generic.Functions.FunctionCallArgumentSpacing.SpaceBeforeComma"/>
+
+  <!--
+    Ending tags '?>' can be really painful to debug.
+    Just disallow them in the end of the file
+  -->
+  <rule ref="PSR2.Files.ClosingTag.NotAllowed"/>
+
+  <!-- <?php tags and constants (true,false,null) need to be lowercase  -->
+  <rule ref="Generic.PHP.LowerCaseKeyword"/>
+  <rule ref="Generic.PHP.LowerCaseConstant"/>
+
+  <!-- Include WordPress Coding Standards with few exclusions -->
+  <rule ref="WordPress">
+    <!--
+    We may want a middle ground though. The best way to do this is add the
+    entire ruleset, then rule by rule, remove ones that don't suit a project. We
+    can do this by running `phpcs` with the '-s' flag, to see the names of the
+    different Sniffs, as their rules are broken. From here, we can opt to
+    exclude problematic sniffs like so.
+    -->
+
+    <!-- Not for WordPress VIP -->
+    <exclude name="WordPress.VIP" />
+
+    <!-- Exclude indentation rules and use PEAR.WhiteSpace.ScopeIndent instead -->
+    <exclude name="Generic.WhiteSpace.ScopeIndent" />
+
+    <!-- Use spaces instead of tabs -->
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+
+    <!-- Free-form commenting rules -->
+    <exclude name="Squiz.Commenting" />
+
+    <!--
+      This forces you to put '.' in oneline comments.
+      Maybe full sentences are better than comments with 1-2 words
+      But we don't want to discourage people from usen even a small comments
+    -->
+    <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+
+    <!-- These indentation rules are just wrong :) -->
+    <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
+
+    <!-- Welcome to the dark side -->
+    <exclude name="WordPress.PHP.YodaConditions" />
+
+    <!-- We like assignments in if -->
+    <exclude name="Squiz.PHP.DisallowMultipleAssignments.Found" />
+  </rule>
+</ruleset>

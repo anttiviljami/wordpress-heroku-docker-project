@@ -28,6 +28,19 @@ services:
       - mysql
       - redis
 
+  ci:
+    build:
+      context: .
+      dockerfile: Dockerfile-herokuphp
+    image: herokuphp
+    command: 'bash -c "source .env.test && tools/ci.sh"'
+    working_dir: /app/user
+    volumes:
+      - .:/app/user
+    links:
+      - mysql
+      - redis
+
   mysql:
     image: mysql:latest
     volumes:
