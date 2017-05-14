@@ -20,6 +20,7 @@
   <!--3rd party code -->
   <exclude-pattern>/mu-plugins/bedrock-autoloader.php</exclude-pattern>
   <exclude-pattern>/plugins/s3-uploads/*</exclude-pattern>
+  <exclude-pattern>/plugins/redis-cache/*</exclude-pattern>
   <exclude-pattern>/wp-content/object-cache.php</exclude-pattern>
 
   <!-- Disallow tabs altogether -->

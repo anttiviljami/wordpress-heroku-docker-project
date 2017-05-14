@@ -17,10 +17,10 @@ else
 fi
 
 # Install WordPress coding standards ruleset for WordPress if not yet installed
-[[ -f $HOME/wpcs/composer.json ]] || composer create-project wp-coding-standards/wpcs:dev-master --no-dev --no-interaction $HOME/wpcs
+[[ -f vendor/wpcs/composer.json ]] || composer create-project wp-coding-standards/wpcs:dev-master --no-dev --no-interaction vendor/wpcs
 
 echo -e "\n------ Linting code...\n"
-$HOME/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p . || EXIT_STATUS=$?
+vendor/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p . || EXIT_STATUS=$?
 
 exit $EXIT_STATUS
 
