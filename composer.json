@@ -28,7 +28,8 @@
     "wp-cli/wp-cli" : "*",
     "koodimonni/composer-dropin-installer": "*",
     "koodimonni-language/fi": "*",
-    "wpackagist-theme/twentyseventeen": "*"
+    "wpackagist-theme/twentyseventeen": "*",
+    "humanmade/s3-uploads": "*"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5efc71e367478645930913783b766176",
-    "content-hash": "81858278cf57b4a549e6ee5ffa2440c0",
+    "hash": "915019d4ca015128cb7409ec178ad371",
+    "content-hash": "dbf8b9b39fdcbfa94edb8949886a46b4",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -349,6 +349,42 @@
                 "validator"
             ],
             "time": "2017-04-03 19:08:52"
+        },
+        {
+            "name": "humanmade/s3-uploads",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/humanmade/S3-Uploads.git",
+                "reference": "9cb765284e7407d7ad2309a64dd8e5e13db258b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/humanmade/S3-Uploads/zipball/9cb765284e7407d7ad2309a64dd8e5e13db258b2",
+                "reference": "9cb765284e7407d7ad2309a64dd8e5e13db258b2",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Human Made Limited",
+                    "email": "support@humanmade.co.uk",
+                    "homepage": "http://hmn.md/"
+                }
+            ],
+            "description": "WordPress plugin to store uploads on S3",
+            "homepage": "https://github.com/humanmade/S3-Uploads",
+            "keywords": [
+                "wordpress"
+            ],
+            "time": "2016-04-29 10:00:39"
         },
         {
             "name": "johnpbloch/wordpress",

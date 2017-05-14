@@ -72,6 +72,14 @@ define( 'LOGGED_IN_SALT', env( 'LOGGED_IN_SALT' ) );
 define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
 
 /**
+ * S3 Uploads Config
+ */
+define( 'S3_UPLOADS_BUCKET', env( 'S3_UPLOADS_BUCKET' ) );
+define( 'S3_UPLOADS_KEY', env( 'S3_UPLOADS_KEY' ) );
+define( 'S3_UPLOADS_SECRET', env( 'S3_UPLOADS_SECRET' ) );
+define( 'S3_UPLOADS_REGION', env( 'S3_UPLOADS_REGION' ) );
+
+/**
  * Custom Settings
  */
 define( 'AUTOMATIC_UPDATER_DISABLED', true );
