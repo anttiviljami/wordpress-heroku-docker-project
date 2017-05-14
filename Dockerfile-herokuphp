@@ -46,7 +46,6 @@ RUN curl --silent --location https://raw.githubusercontent.com/heroku/heroku-bui
 # Enable all optional exts
 RUN echo "\n\
 user_ini.cache_ttl = 30 \n\
-zend_extension = opcache.so \n\
 opcache.enable_cli = 1 \n\
 opcache.validate_timestamps = 1 \n\
 opcache.revalidate_freq = 0 \n\
