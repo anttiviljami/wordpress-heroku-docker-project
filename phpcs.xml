@@ -17,11 +17,10 @@
   <!-- Exclude language files -->
   <exclude-pattern>/lang/</exclude-pattern>
 
-  <!-- This is from roots/bedrock and keep it as is -->
+  <!--3rd party code -->
   <exclude-pattern>/mu-plugins/bedrock-autoloader.php</exclude-pattern>
-
-  <!-- S3-uploads is 3rd party code -->
   <exclude-pattern>/plugins/s3-uploads/*</exclude-pattern>
+  <exclude-pattern>/wp-content/object-cache.php</exclude-pattern>
 
   <!-- Disallow tabs altogether -->
   <rule ref="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>

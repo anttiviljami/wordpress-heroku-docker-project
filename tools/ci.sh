@@ -14,14 +14,10 @@ else
     source .env.test || EXIT_STATUS=$?
 fi
 
-# Update composer and install project
-composer self-update
-composer install
-
 # Install WordPress coding standards ruleset for WordPress if not yet installed
-[[ -f $HOME/wpcs/composer.json ]] || composer create-project wp-coding-standards/wpcs:dev-master --no-dev $HOME/wpcs
+[[ -f $HOME/wpcs/composer.json ]] || composer create-project wp-coding-standards/wpcs:dev-master --no-dev --no-interaction $HOME/wpcs
 
-echo -e "\n------ Linting code..\n"
+echo -e "\n------ Linting code...\n"
 $HOME/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p . || EXIT_STATUS=$?
 
 exit $EXIT_STATUS

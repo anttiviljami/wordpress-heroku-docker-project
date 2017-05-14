@@ -29,7 +29,8 @@
     "koodimonni/composer-dropin-installer": "*",
     "koodimonni-language/fi": "*",
     "wpackagist-theme/twentyseventeen": "*",
-    "humanmade/s3-uploads": "*"
+    "humanmade/s3-uploads": "*",
+    "wpackagist-plugin/redis-cache": "*"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
