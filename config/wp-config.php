@@ -53,14 +53,22 @@ if ( ! isset( $_SERVER['HTTPS'] ) ) {
 // PHPCS doesn't like parse_url because wp_parse_url is preferred
 //@codingStandardsIgnoreStart
 $database_url = parse_url( env( 'CLEARDB_DATABASE_URL' ) );
+$redus_url = parse_url( env( 'REDIS_URL' ) );
 //@codingStandardsIgnoreEnd
 define( 'DB_NAME', trim( $database_url['path'], '/' ) );
 define( 'DB_USER', trim( $database_url['user'] ) );
 define( 'DB_PASSWORD', trim( $database_url['pass'] ) );
 define( 'DB_HOST', trim( $database_url['host'] ) );
+define( 'DB_PORT', trim( $database_url['port'] ) );
 define( 'DB_CHARSET', env( 'DB_CHARSET' ) ?: 'utf8mb4' );
 define( 'DB_COLLATE', env( 'DB_COLLATE' ) ?: 'utf8mb4_swedish_ci' );
 $table_prefix = env( 'DB_PREFIX' ) ?: 'wp_';
+
+define( 'WP_REDIS_USER', trim( $redis_url['user'] ) );
+define( 'WP_REDIS_PASSWORD', trim( $redis_url['pass'] ) );
+define( 'WP_REDIS_HOST', trim( $redis_url['host'] ) );
+define( 'WP_REDIS_DATABASE', trim( $redis_url['path'], '/' ) );
+define( 'WP_REDIS_PORT', trim( $redis_url['port'], '/' ) );
 
 /**
  * Authentication Unique Keys and Salts
