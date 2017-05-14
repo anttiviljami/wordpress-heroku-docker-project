@@ -4,9 +4,6 @@ FROM heroku/heroku:16
 # Internally, we arbitrarily use port 3000
 ENV PORT 3000
 
-# Internally, we arbitrarily use port 3000
-ENV PORT 3000
-
 # Which versions?
 ENV PHP_VERSION 7.0.10
 ENV HTTPD_VERSION 2.4.20
