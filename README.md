@@ -97,15 +97,15 @@ docker-compose up ci
 
 ## Deployment to Heroku
 
-Set up a new app on Heroku.
-
-You need to provide a `DATABASE_URL` config variable containing a URL to a
-working MySQL database.
+Set up a new app on Heroku for your WordPress project.
 
 Use the included
 [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
-to provision a MariaDB instance and an S3 bucket for uploads on AWS. The script
-will output the values needed for Heroku config variables.
+to provision a MariaDB instance and an S3 bucket for uploads on AWS.
+
+<a href="https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=wordpress-heroku&templateURL=https://s3.eu-central-1.amazonaws.com/cf-templates-6kuoc24dql6e-eu-central-1/2017135qFR-cloudformation.json" target="_blank"><img alt="Launch Stack" src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"></a>
+
+The script will output the values needed for Heroku config variables:
 
 ![AWS Cloudformation script output](https://cloud.githubusercontent.com/assets/6105650/26060801/cef914ae-398e-11e7-85d0-c916e88bee37.png)
 
