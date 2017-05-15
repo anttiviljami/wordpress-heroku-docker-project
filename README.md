@@ -70,32 +70,7 @@ docker-compose up web
 You can now navigate to [`http://localhost:8080`](http://localhost:8080) to
 start working with your local WordPress installation.
 
-## WP-CLI
-
-You can run WP-CLI locally by starting the shell container
-
-```
-docker-compose run shell
-```
-
-To run wp-cli in a Heroku instance, just run a temporary bash dyno.
-
-```
-heroku run bash
-```
-
-Both environments have WP-CLI available as `wp`.
-
-## Running tests
-
-Travis will run the `ci` container to test your app. You can do the same
-locally!
-
-```
-docker-compose up ci
-```
-
-## Deployment to Heroku
+## Deploying to Heroku
 
 ### Database and S3 Bucket
 
@@ -120,9 +95,31 @@ This is how your project should look like on Heroku:
 
 ![Heroku App Dashboard](https://cloud.githubusercontent.com/assets/6105650/26061040/7f62fc42-398f-11e7-82de-a6b9c642fb67.png)
 
-![Heroku Pipeline](https://cloud.githubusercontent.com/assets/6105650/26045817/91526a9a-3954-11e7-8756-ba7cf5a5405c.png)
-
-You can now push to Heroku! Here's an example of a WordPress instance running
-on Heroku:
+Here's an example of a WordPress instance running on Heroku:
 
 [wp-project-dev.herokuapp.com](https://wp-project-dev.herokuapp.com/)
+
+## WP-CLI
+
+You can run WP-CLI locally by starting the shell container
+
+```
+docker-compose run shell
+```
+
+To run wp-cli in a Heroku instance, just run a temporary bash dyno.
+
+```
+heroku run bash
+```
+
+Both environments have WP-CLI available as `wp`.
+
+## Running tests
+
+Travis CI will run the `ci` container to test your app. You can do the same
+locally:
+
+```
+docker-compose up ci
+```
