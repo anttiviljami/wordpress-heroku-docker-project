@@ -133,13 +133,13 @@ Heroku app:
 - Redis
 - NewRelic APM
 
-You can now push to Heroku! Here's an example of a WordPress instance running
-on Heroku:
-
-[wp-project-dev.herokuapp.com](https://wp-project-dev.herokuapp.com/)
-
 This is how your project should look like on Heroku:
 
 ![Heroku App Dashboard](https://cloud.githubusercontent.com/assets/6105650/26061040/7f62fc42-398f-11e7-82de-a6b9c642fb67.png)
 
 ![Heroku Pipeline](https://cloud.githubusercontent.com/assets/6105650/26045817/91526a9a-3954-11e7-8756-ba7cf5a5405c.png)
+
+You can now push to Heroku! Here's an example of a WordPress instance running
+on Heroku:
+
+[wp-project-dev.herokuapp.com](https://wp-project-dev.herokuapp.com/)
