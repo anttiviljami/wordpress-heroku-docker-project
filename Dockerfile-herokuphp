@@ -10,6 +10,10 @@ ENV HTTPD_VERSION 2.4.20
 ENV NGINX_VERSION 1.8.1
 ENV COMPOSER_VERSION 1.2.1
 
+# Install mysql-client tools for ease of development with WP-CLI
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes mysql-client
+
 # Create some needed directories
 RUN mkdir -p /app/.heroku/php /app/.profile.d
 WORKDIR /app/user
