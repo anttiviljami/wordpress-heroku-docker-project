@@ -1,0 +1,142 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "MariaDB database instance",
+  "Parameters": {
+    "DBClass": {
+      "Default": "db.t2.micro",
+      "Description": "Database instance class",
+      "Type": "String",
+      "AllowedValues": [
+        "db.t2.micro",
+        "db.t2.small",
+        "db.t2.medium",
+        "db.t2.large",
+        "db.m4.large",
+        "db.m4.xlarge",
+        "db.m4.2xlarge",
+        "db.m4.4xlarge",
+        "db.m4.10xlarge",
+        "db.m3.medium",
+        "db.m3.large",
+        "db.m3.xlarge",
+        "db.m3.2xlarge",
+        "db.r3.large",
+        "db.r3.xlarge",
+        "db.r3.2xlarge",
+        "db.r3.4xlarge",
+        "db.r3.8xlarge"
+      ],
+      "ConstraintDescription": "must select a valid database instance type."
+    },
+    "DBName": {
+      "Default": "wordpress",
+      "Description": "Database name",
+      "Type": "String",
+      "MinLength": "1",
+      "MaxLength": "64",
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."
+    },
+    "DBUsername": {
+      "Default": "wordpress",
+      "Description": "Database username",
+      "Type": "String",
+      "MinLength": "1",
+      "MaxLength": "16",
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."
+    },
+    "DBPassword": {
+      "Default": "wordpress",
+      "NoEcho": "true",
+      "Description": "Database password",
+      "Type": "String",
+      "MinLength": "8",
+      "MaxLength": "41",
+      "AllowedPattern": "[a-zA-Z0-9]*",
+      "ConstraintDescription": "must contain only alphanumeric characters."
+    },
+    "MultiAZDatabase": {
+      "Default": "false",
+      "Description": "Create a multi-AZ Amazon RDS database instance",
+      "Type": "String",
+      "AllowedValues": [
+        "true",
+        "false"
+      ],
+      "ConstraintDescription": "must be either true or false."
+    },
+    "DBAllocatedStorage": {
+      "Default": "5",
+      "Description": "The size of the database (GB)",
+      "Type": "Number",
+      "MinValue": "5",
+      "MaxValue": "1024",
+      "ConstraintDescription": "must be between 5 and 1024GB."
+    }
+  },
+  "Resources": {
+    "DBInstance": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBName": {
+          "Ref": "DBName"
+        },
+        "Engine": "MariaDB",
+        "MultiAZ": {
+          "Ref": "MultiAZDatabase"
+        },
+        "MasterUsername": {
+          "Ref": "DBUsername"
+        },
+        "DBInstanceClass": {
+          "Ref": "DBClass"
+        },
+        "AllocatedStorage": {
+          "Ref": "DBAllocatedStorage"
+        },
+        "MasterUserPassword": {
+          "Ref": "DBPassword"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "DATABASE_URL": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "mysql://",
+            {
+              "Ref": "DBUsername"
+            },
+            ":",
+            {
+              "Ref": "DBPassword"
+            },
+            "@",
+            {
+              "Fn::GetAtt": [
+                "DBInstance",
+                "Endpoint.Address"
+              ]
+            },
+            ":",
+            {
+              "Fn::GetAtt": [
+                "DBInstance",
+                "Endpoint.Port"
+              ]
+            },
+            "/",
+            {
+              "Ref": "DBName"
+            }
+          ]
+        ]
+      },
+      "Description": "Public URL for newly created Database"
+    }
+  }
+}
