@@ -18,6 +18,8 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 - [x] Newrelic APM monitoring
 - [x] Papertrail log management
 - [x] Environment management for complete `local`, `development`, `qa` and `production` pipeline
+- [x] [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
+for provisioning a MariaDB database on AWS RDS
 - [ ] Scripts for automating deployment, synchronising databases
 - [ ] Basic integration tests
 
@@ -95,8 +97,22 @@ docker-compose up ci
 
 ## Deployment to Heroku
 
-Set up a new app on Heroku, you need at least the ClearDB addon for your
-database.
+Set up a new app on Heroku.
+
+You need to provide a `DATABASE_URL` config variable containing a URL to a
+working MySQL database.
+
+You can use the included
+[CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
+to provision a MariaDB instance on AWS, or alternatively you can enable the free
+ClearDB Heroku addon and copy the content of `CLEARDB_DATABASE_URL` to your
+`DATABASE_URL` Heroku config.
+
+I strongly recommend enabling at least the following addons for your Heroku app:
+
+- Papertrail
+- Redis
+- NewRelic APM
 
 Make sure you set up S3 uploads and set your `WP_ENV` variable for Heroku
 
