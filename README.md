@@ -104,3 +104,7 @@ on Heroku:
 
 [wp-project-dev.herokuapp.com](https://wp-project-dev.herokuapp.com/)
 
+This is how your project should look like on Heroku:
+
+![Heroku App Dashboard](https://cloud.githubusercontent.com/assets/6105650/26044996/9fbb346c-3950-11e7-82cc-2524215a3d8a.png)
+
