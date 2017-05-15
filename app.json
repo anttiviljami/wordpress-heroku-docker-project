@@ -9,6 +9,10 @@
      "newrelic"
   ],
   "env": {
+    "WP_ENV": {
+      "description": "Is this app for development, qa or production?",
+      "value": "development"
+    },
     "AUTH_KEY": {
       "description": "wp-config secret",
       "generator": "secret"
