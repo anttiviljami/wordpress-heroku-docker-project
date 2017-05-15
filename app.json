@@ -13,6 +13,26 @@
       "description": "Is this app for development, qa or production?",
       "value": "development"
     },
+    "DATABASE_URL": {
+      "description": "The URL to a MySQL database",
+      "value": ""
+    },
+    "S3_UPLOADS_BUCKET": {
+      "description": "Name of the S3 bucket used for uploads",
+      "value": ""
+    },
+    "S3_UPLOADS_KEY": {
+      "description": "S3 Bucket access key",
+      "value": ""
+    },
+    "S3_UPLOADS_SECRET": {
+      "description": "S3 Bucket access secret",
+      "value": ""
+    },
+    "S3_UPLOADS_REGION": {
+      "description": "AWS region used for the bucket",
+      "value": "eu-central-1"
+    },
     "AUTH_KEY": {
       "description": "wp-config secret",
       "generator": "secret"

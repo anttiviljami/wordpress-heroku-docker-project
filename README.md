@@ -97,9 +97,7 @@ docker-compose up ci
 
 ## Deployment to Heroku
 
-<a href="https://heroku.com/deploy?template=https://github.com/anttiviljami/wordpress-heroku-docker-project" target="_blank"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a>
-
-Set up a new app on Heroku for your WordPress project.
+### Database and S3 Bucket
 
 Use the included
 [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
@@ -111,14 +109,12 @@ The script will output the values needed for Heroku config variables:
 
 ![AWS Cloudformation script output](https://cloud.githubusercontent.com/assets/6105650/26060801/cef914ae-398e-11e7-85d0-c916e88bee37.png)
 
-```bash
-heroku config:set \
-  DATABASE_URL=replace \
-  S3_UPLOADS_BUCKET=replace \
-  S3_UPLOADS_KEY=replace \
-  S3_UPLOADS_SECRET=replace \
-  S3_UPLOADS_REGION=replace
-```
+### Heroku App
+
+Set up a new app on Heroku for your WordPress project. Use the values generated
+by the Cloudformation script previously
+
+<a href="https://heroku.com/deploy?template=https://github.com/anttiviljami/wordpress-heroku-docker-project" target="_blank"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a>
 
 This is how your project should look like on Heroku:
 
