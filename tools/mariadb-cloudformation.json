@@ -28,6 +28,15 @@
       ],
       "ConstraintDescription": "must select a valid database instance type."
     },
+    "DBIdentifier": {
+      "Default": "wordpress-db",
+      "Description": "DB Instance Identifier",
+      "Type": "String",
+      "MinLength": "1",
+      "MaxLength": "64",
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9-]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."
+    },
     "DBName": {
       "Default": "wordpress",
       "Description": "Database name",
@@ -39,7 +48,7 @@
     },
     "DBUsername": {
       "Default": "wordpress",
-      "Description": "Database username",
+      "Description": "Master username",
       "Type": "String",
       "MinLength": "1",
       "MaxLength": "16",
@@ -49,7 +58,7 @@
     "DBPassword": {
       "Default": "wordpress",
       "NoEcho": "true",
-      "Description": "Database password",
+      "Description": "Master password",
       "Type": "String",
       "MinLength": "8",
       "MaxLength": "41",
@@ -79,10 +88,14 @@
     "DBInstance": {
       "Type": "AWS::RDS::DBInstance",
       "Properties": {
+        "DBInstanceIdentifier": {
+          "Ref": "DBIdentifier"
+        },
         "DBName": {
           "Ref": "DBName"
         },
         "Engine": "MariaDB",
+        "StorageType": "gp2",
         "MultiAZ": {
           "Ref": "MultiAZDatabase"
         },
@@ -102,7 +115,7 @@
     }
   },
   "Outputs": {
-    "DATABASE_URL": {
+    "DatabaseURL": {
       "Value": {
         "Fn::Join": [
           "",
