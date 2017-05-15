@@ -1,7 +1,21 @@
 # WP Heroku Docker Project
 [![Build Status](https://travis-ci.org/anttiviljami/wordpress-heroku-docker-project.svg?branch=master)](https://travis-ci.org/anttiviljami/wordpress-heroku-docker-project) [![License](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
 
-WordPress project template for Heroku deployment and local Docker development.
+The Holy Grail WordPress project template for Heroku deployment and local Docker development.
+
+## Features
+
+- [x] Deployment to Heroku pipelines
+- [x] Local Heroku-like environment with Docker-compose
+- [x] Bedrock-like modern development environment
+- [x] Environment management for local, development, qa and production pipeline
+- [x] PHP 7
+- [x] WP-CLI
+- [x] Configurable Nginx
+- [x] Uploads to S3
+- [x] Redis Object Cache
+- [x] Travis CI pipeline you can run with Docker
+- [x] PHP Codesniffer with nicer coding standard for WordPress
 
 ## Local Development
 
@@ -41,6 +55,31 @@ docker-compose up web
 
 You can now navigate to [`http://localhost:8080`](http://localhost:8080) to
 start working with your local WordPress installation.
+
+## WP-CLI
+
+You can run WP-CLI locally by starting the shell container
+
+```
+docker-compose run shell
+```
+
+To run wp-cli in a Heroku instance, just run a temporary bash dyno.
+
+```
+heroku run bash
+```
+
+Both environments have WP-CLI available as `wp`.
+
+## Running tests
+
+Travis will run the `ci` container to test your app. You can do the same
+locally!
+
+```
+docker-compose up ci
+```
 
 ## Deployment to Heroku
 
