@@ -6,6 +6,8 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 ## Features
 
 - [x] Deployment to Heroku pipelines
+- [x] Newrelic APM monitoring
+- [x] Papertrail log management
 - [x] Local Heroku-like environment with Docker-compose
 - [x] Bedrock-like modern development environment
 - [x] Environment management for local, development, qa and production pipeline
