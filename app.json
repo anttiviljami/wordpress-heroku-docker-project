@@ -1,0 +1,45 @@
+{
+  "name": "WordPress on Heroku",
+  "description": "Holy Grail WordPress project template for Heroku",
+  "repository": "https://github.com/anttiviljami/wordpress-heroku-docker-project",
+  "keywords": ["wordpress", "aws", "s3", "mariadb", "mysql", "php", "php7"],
+  "addons": [
+     "heroku-redis",
+     "papertrail",
+     "newrelic"
+  ],
+  "env": {
+    "AUTH_KEY": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    },
+    "SECURE_AUTH_KEY": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    },
+    "LOGGED_IN_KEY": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    },
+    "NONCE_KEY": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    },
+    "AUTH_SALT": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    },
+    "SECURE_AUTH_SALT": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    },
+    "LOGGED_IN_SALT": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    },
+    "NONCE_SALT": {
+      "description": "wp-config secret",
+      "generator": "secret"
+    }
+  }
+}

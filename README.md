@@ -99,6 +99,8 @@ docker-compose up ci
 
 Set up a new app on Heroku for your WordPress project.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/anttiviljami/wordpress-heroku-docker-project)
+
 Use the included
 [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
 to provision a MariaDB instance and an S3 bucket for uploads on AWS.
