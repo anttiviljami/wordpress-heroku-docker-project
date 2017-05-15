@@ -21,6 +21,8 @@
   ],
   "require": {
     "php": ">=7.0",
+    "ext-gd": "*",
+    "ext-redis": "*",
     "johnpbloch/wordpress": "*",
     "composer/installers": "v1.0.12",
     "vlucas/phpdotenv": "^2.0.1",
@@ -29,8 +31,7 @@
     "koodimonni/composer-dropin-installer": "*",
     "koodimonni-language/fi": "*",
     "wpackagist-theme/twentyseventeen": "*",
-    "humanmade/s3-uploads": "*",
-    "wpackagist-plugin/redis-cache": "*"
+    "humanmade/s3-uploads": "*"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
