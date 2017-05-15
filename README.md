@@ -112,11 +112,11 @@ The script will output the values needed for Heroku config variables:
 ```bash
 heroku config:set \
   WP_ENV=development \
-  DATABASE_URL=
-  S3_UPLOADS_BUCKET=<replace> \
-  S3_UPLOADS_KEY=<replace> \
-  S3_UPLOADS_SECRET=<replace> \
-  S3_UPLOADS_REGION=<replace>
+  DATABASE_URL=replace \
+  S3_UPLOADS_BUCKET=replace \
+  S3_UPLOADS_KEY=replace \
+  S3_UPLOADS_SECRET=replace \
+  S3_UPLOADS_REGION=replace
 ```
 
 Make sure to also set up your `WP_ENV` variable for Heroku. It should be one of:
