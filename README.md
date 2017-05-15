@@ -5,19 +5,21 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 
 ## Features
 
-- [x] Deployment to Heroku pipelines
-- [x] Newrelic APM monitoring
-- [x] Papertrail log management
-- [x] Local Heroku-like environment with Docker-compose
 - [x] Bedrock-like modern development environment
-- [x] Environment management for local, development, qa and production pipeline
+- [x] Deployment to Heroku pipelines
+- [x] Local Heroku-like environment with Docker-compose
 - [x] PHP 7
 - [x] WP-CLI
 - [x] Configurable Nginx
-- [x] Uploads to S3
 - [x] Redis Object Cache
 - [x] Travis CI pipeline you can run with Docker
-- [x] PHP Codesniffer with nicer coding standard for WordPress
+- [x] PHP Codesniffer with nicer coding standards for WordPress
+- [x] Media Uploads to S3
+- [x] Newrelic APM monitoring
+- [x] Papertrail log management
+- [x] Environment management for complete `local`, `development`, `qa` and `production` pipeline
+- [ ] Scripts for automating deployment, synchronising databases
+- [ ] Basic integration tests
 
 ## Local Development
 
