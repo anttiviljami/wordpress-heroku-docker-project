@@ -50,17 +50,6 @@ Now you can run `composer install` inside Docker
 composer install
 ```
 
-If you want, you can now install WordPress with `tools/install-wordpress.sh`
-```bash
-$ ./tools/install-wordpress.sh
-2/6 --title=<site-title>: My WordPress Site
-Success: WordPress installed successfully.
-Plugin 's3-uploads' activated.
-Success: Activated 1 of 1 plugins.
-Success: The cache was flushed.
-----> WordPress installed succesfully!
-```
-
 Outside the docker shell, you can now start the main process
 
 ```bash
