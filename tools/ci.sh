@@ -16,6 +16,9 @@ else
     source .env.test || EXIT_STATUS=$?
 fi
 
+# Run composer install
+composer install --no-interaction
+
 # Install WordPress coding standards ruleset for WordPress if not yet installed
 [[ -f vendor/wpcs/composer.json ]] || composer create-project wp-coding-standards/wpcs:dev-master --no-dev --no-interaction vendor/wpcs
 

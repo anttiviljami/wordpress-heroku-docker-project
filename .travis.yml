@@ -15,8 +15,6 @@ cache:
 before_install:
   - docker-compose -v
   - docker -v
-  - composer self-update
-  - composer install
 install:
 before_script:
 script:
