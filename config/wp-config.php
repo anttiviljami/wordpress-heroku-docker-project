@@ -52,7 +52,7 @@ if ( ! isset( $_SERVER['HTTPS'] ) ) {
  */
 // PHPCS doesn't like parse_url because wp_parse_url is preferred
 //@codingStandardsIgnoreStart
-$database_url = parse_url( env( 'CLEARDB_DATABASE_URL' ) );
+$database_url = parse_url( env( 'DATABASE_URL' ) );
 //@codingStandardsIgnoreEnd
 define( 'DB_NAME', trim( $database_url['path'], '/' ) );
 define( 'DB_USER', trim( $database_url['user'] ) );
