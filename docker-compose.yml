@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   web:
     build:
@@ -10,7 +10,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/app/user
+      - .:/app/user:rw,cached
     links:
       - mysql
       - redis
@@ -23,7 +23,7 @@ services:
     command: 'bash -c "source .env && bash"'
     working_dir: /app/user
     volumes:
-      - .:/app/user
+      - .:/app/user:rw,cached
     links:
       - mysql
       - redis
@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile-herokuphp
     image: herokuphp
     command: bash tools/ci.sh
-    working_dir: /app/user
+    working_dir: /app/user:rw,cached
     volumes:
       - .:/app/user
     links:
