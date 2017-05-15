@@ -110,3 +110,4 @@ This is how your project should look like on Heroku:
 
 ![Heroku App Dashboard](https://cloud.githubusercontent.com/assets/6105650/26044996/9fbb346c-3950-11e7-82cc-2524215a3d8a.png)
 
+![Heroku Pipeline](https://cloud.githubusercontent.com/assets/6105650/26045817/91526a9a-3954-11e7-8756-ba7cf5a5405c.png)
