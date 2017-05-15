@@ -18,8 +18,8 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 - [x] Newrelic APM monitoring
 - [x] Papertrail log management
 - [x] Environment management for complete `local`, `development`, `qa` and `production` pipeline
-- [x] [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
-for provisioning a MariaDB database on AWS RDS
+- [x] [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/cloudformation.json)
+for provisioning a MariaDB RDS instance and an S3 bucket on AWS
 - [ ] Scripts for automating deployment, synchronising databases
 - [ ] Basic integration tests
 
@@ -102,28 +102,36 @@ Set up a new app on Heroku.
 You need to provide a `DATABASE_URL` config variable containing a URL to a
 working MySQL database.
 
-You can use the included
+Use the included
 [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
-to provision a MariaDB instance on AWS, or alternatively you can enable the free
-ClearDB Heroku addon and copy the content of `CLEARDB_DATABASE_URL` to your
-`DATABASE_URL` Heroku config.
+to provision a MariaDB instance and an S3 bucket for uploads on AWS. The script
+will output the values needed for Heroku config variables.
 
-I strongly recommend enabling at least the following addons for your Heroku app:
-
-- Papertrail
-- Redis
-- NewRelic APM
-
-Make sure you set up S3 uploads and set your `WP_ENV` variable for Heroku
+![AWS Cloudformation script output](https://cloud.githubusercontent.com/assets/6105650/26060801/cef914ae-398e-11e7-85d0-c916e88bee37.png)
 
 ```bash
 heroku config:set \
   WP_ENV=development \
-  S3_UPLOADS_BUCKET=my-bucket \
+  DATABASE_URL=
+  S3_UPLOADS_BUCKET=<replace> \
   S3_UPLOADS_KEY=<replace> \
   S3_UPLOADS_SECRET=<replace> \
-  S3_UPLOADS_REGION=eu-central-1
+  S3_UPLOADS_REGION=<replace>
 ```
+
+Make sure to also set up your `WP_ENV` variable for Heroku. It should be one of:
+
+- `development`
+- `qa`
+- `production`
+
+
+I strongly recommend also enabling at least the following addons for your
+Heroku app:
+
+- Papertrail
+- Redis
+- NewRelic APM
 
 You can now push to Heroku! Here's an example of a WordPress instance running
 on Heroku:

@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "MariaDB database instance",
+  "Description": "MariaDB database instance + S3 bucket for WordPress",
   "Parameters": {
     "DBClass": {
       "Default": "db.t2.micro",
@@ -82,35 +82,65 @@
       "MinValue": "5",
       "MaxValue": "1024",
       "ConstraintDescription": "must be between 5 and 1024GB."
-    }
+    },
+    "BucketName": {
+      "Default": "wordpress-s3",
+      "Description": "S3 Bucket name",
+      "Type": "String",
+      "MinLength": "1",
+      "MaxLength": "64",
+      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9-]*",
+      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."
+    },
   },
   "Resources": {
     "DBInstance": {
       "Type": "AWS::RDS::DBInstance",
       "Properties": {
-        "DBInstanceIdentifier": {
-          "Ref": "DBIdentifier"
-        },
-        "DBName": {
-          "Ref": "DBName"
-        },
+        "DBInstanceIdentifier": { "Ref": "DBIdentifier" },
+        "DBName": { "Ref": "DBName" },
         "Engine": "MariaDB",
         "StorageType": "gp2",
-        "MultiAZ": {
-          "Ref": "MultiAZDatabase"
+        "MultiAZ": { "Ref": "MultiAZDatabase" },
+        "MasterUsername": { "Ref": "DBUsername" },
+        "DBInstanceClass": { "Ref": "DBClass" },
+        "AllocatedStorage": { "Ref": "DBAllocatedStorage" },
+        "MasterUserPassword": { "Ref": "DBPassword" }
+      }
+    },
+    "IAMUser": {
+      "Type": "AWS::IAM::User"
+    },
+    "IAMAcessKey": {
+      "Type": "AWS::IAM::AccessKey",
+      "Properties": { "UserName": { "Ref": "IAMUser" } }
+    },
+    "S3Bucket" : {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": { "Ref": "BucketName" },
+        "AccessControl": "PublicRead",
+      }
+    },
+    "IAMPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "S3BucketPermissions",
+        "PolicyDocument" : {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "S3BucketPermissions",
+              "Effect": "Allow",
+              "Action": ["s3:*"],
+              "Resource": [
+                { "Fn::Join": [ "", [ "arn:aws:s3:::", { "Ref": "S3Bucket" } ] ] },
+                { "Fn::Join": [ "", [ "arn:aws:s3:::", { "Ref": "S3Bucket" }, "/*" ] ] }
+              ]
+            }
+          ]
         },
-        "MasterUsername": {
-          "Ref": "DBUsername"
-        },
-        "DBInstanceClass": {
-          "Ref": "DBClass"
-        },
-        "AllocatedStorage": {
-          "Ref": "DBAllocatedStorage"
-        },
-        "MasterUserPassword": {
-          "Ref": "DBPassword"
-        }
+        "Users": [ { "Ref": "IAMUser" } ]
       }
     }
   },
@@ -121,13 +151,9 @@
           "",
           [
             "mysql://",
-            {
-              "Ref": "DBUsername"
-            },
+            { "Ref": "DBUsername" },
             ":",
-            {
-              "Ref": "DBPassword"
-            },
+            { "Ref": "DBPassword" },
             "@",
             {
               "Fn::GetAtt": [
@@ -143,13 +169,23 @@
               ]
             },
             "/",
-            {
-              "Ref": "DBName"
-            }
+            { "Ref": "DBName" }
           ]
         ]
       },
       "Description": "Public URL for newly created Database"
+    },
+    "BucketName": {
+      "Value": { "Ref": "S3Bucket" }
+    },
+    "BucketKey": {
+      "Value": { "Ref": "IAMAcessKey" }
+    },
+    "BucketSecret": {
+      "Value": { "Fn::GetAtt": [ "IAMAcessKey", "SecretAccessKey" ] }
+    },
+    "BucketRegion": {
+      "Value": { "Ref": "AWS::Region" }
     }
   }
 }
