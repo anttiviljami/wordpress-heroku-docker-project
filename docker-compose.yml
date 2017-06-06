@@ -34,9 +34,9 @@ services:
       dockerfile: Dockerfile-herokuphp
     image: herokuphp
     command: bash tools/ci.sh
-    working_dir: /app/user:rw,cached
+    working_dir: /app/user
     volumes:
-      - .:/app/user
+      - .:/app/user:rw,cached
     links:
       - mysql
       - redis
