@@ -46,5 +46,5 @@ else
   export DATABASE_HOST=$DOCKER_IP
   export DATABASE_PORT=3306
   export REDIS_HOST=$DOCKER_IP
-  export REDIS_PORT=9379
+  export REDIS_PORT=6379
 fi
