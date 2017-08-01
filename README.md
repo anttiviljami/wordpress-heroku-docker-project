@@ -24,7 +24,6 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 - [x] Environment management for complete `local`, `development`, `qa` and `production` pipeline
 - [x] [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/cloudformation.json)
 for provisioning a MariaDB RDS instance and an S3 bucket on AWS
-- [ ] Scripts for automating deployment, synchronising databases
 - [ ] Basic integration tests
 
 ## Local Development
