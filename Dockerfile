@@ -73,6 +73,9 @@ extension=xmlrpc.so \n\
 extension=xsl.so\n\
 " >> /app/.heroku/php/etc/php/php.ini
 
+# Enable timestamps validation for opcache for development
+RUN sed -i /opcache.validate_timestamps/d /app/.heroku/php/etc/php/conf.d/010-ext-zend_opcache.ini
+
 # Install Composer
 RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-cedar-16-stable/composer-$COMPOSER_VERSION.tar.gz | tar xz -C /app/.heroku/php
 

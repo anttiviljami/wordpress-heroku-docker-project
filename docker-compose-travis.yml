@@ -3,7 +3,6 @@ services:
   ci:
     build:
       context: .
-      dockerfile: Dockerfile-herokuphp
     image: herokuphp
     command: bash tools/ci.sh
     working_dir: /app/user

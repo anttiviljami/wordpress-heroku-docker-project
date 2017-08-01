@@ -3,7 +3,6 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile-herokuphp
     image: herokuphp
     command: 'bash -c "source .env && tools/start-web.sh"'
     working_dir: /app/user
@@ -18,7 +17,6 @@ services:
   shell:
     build:
       context: .
-      dockerfile: Dockerfile-herokuphp
     image: herokuphp
     command: 'bash -c "source .env && bash"'
     working_dir: /app/user
@@ -31,7 +29,6 @@ services:
   ci:
     build:
       context: .
-      dockerfile: Dockerfile-herokuphp
     image: herokuphp
     command: bash tools/ci.sh
     working_dir: /app/user
