@@ -38,6 +38,23 @@ services:
       - mysql
       - redis
 
+  ##
+  # To use adminer, navigate to http://localhost:8081
+  #
+  # Use the following mysql credentials:
+  #
+  # Host: mysql
+  # User: wordpress
+  # Password: password
+  # Database: wordpress
+  ##
+  adminer:
+    image: clue/adminer:latest
+    ports:
+      - 8081:80
+    links:
+      - mysql
+
   mysql:
     image: mysql:latest
     volumes:
