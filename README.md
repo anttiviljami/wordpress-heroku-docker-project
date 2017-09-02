@@ -67,7 +67,7 @@ start working with your local WordPress installation.
 ### Database and S3 Bucket
 
 Use the included
-[CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/mariadb-cloudformation.json)
+[CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/cloudformation.json)
 to provision a MariaDB instance and an S3 bucket for uploads on AWS.
 
 <a href="https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=wordpress-heroku&templateURL=https://s3.eu-central-1.amazonaws.com/cf-templates-6kuoc24dql6e-eu-central-1/2017135qFR-cloudformation.json" target="_blank"><img alt="Launch Stack" src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"></a>
