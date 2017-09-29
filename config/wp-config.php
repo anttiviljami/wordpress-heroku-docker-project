@@ -8,7 +8,7 @@ $webroot_dir = $root_dir . '/htdocs';
 /**
  * Expose global env() function from oscarotero/env
  */
-Env::init( );
+Env::init();
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
