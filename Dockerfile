@@ -78,6 +78,7 @@ RUN sed -i /opcache.validate_timestamps/d /app/.heroku/php/etc/php/conf.d/010-ex
 
 # Install Composer
 RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-cedar-16-stable/composer-$COMPOSER_VERSION.tar.gz | tar xz -C /app/.heroku/php
+RUN composer self-update
 
 # copy dep files first so Docker caches the install step if they don't change
 ONBUILD COPY composer.lock /app/user/
