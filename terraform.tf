@@ -11,7 +11,7 @@ provider "heroku" {}
 terraform {
   backend "s3" {
     bucket = "wp-terraform-backend"
-    key    = "wp/terraform.tfstate"
+    key = "wp/terraform.tfstate"
     region = "eu-west-1"
   }
 }
@@ -57,19 +57,64 @@ resource "aws_db_instance" "dev" {
   skip_final_snapshot = 1
 }
 
+# IAM user for S3 bucket
+resource "aws_iam_user" "dev" {
+  name = "${var.project_name}-dev-user"
+}
+
+# Access keys for IAM user
+resource "aws_iam_access_key" "dev" {
+  user = "${aws_iam_user.dev.name}"
+}
+
+# S3 bucket for uploads
+resource "aws_s3_bucket" "dev" {
+  bucket = "${var.project_name}-dev-uploads"
+	acl = "public-read"
+  force_destroy = "true"
+}
+
+# Grant full access to the bucket
+resource "aws_s3_bucket_policy" "dev" {
+  bucket = "${aws_s3_bucket.dev.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "${aws_iam_user.dev.arn}"
+      },
+      "Action": [ "s3:*" ],
+      "Resource": [
+        "${aws_s3_bucket.dev.arn}",
+        "${aws_s3_bucket.dev.arn}/*"
+      ]
+    }
+  ]
+}
+EOF
+}
+
 # Heroku App
 resource "heroku_app" "dev" {
-  name   = "${var.project_name}-dev"
+  name = "${var.project_name}-dev"
   region = "eu"
   config_vars {
     WP_ENV = "dev"
     DATABASE_URL = "mysql://wordpress:${random_id.dev.hex}@${aws_db_instance.dev.address}/wordpress"
+    S3_UPLOADS_BUCKET = "${aws_s3_bucket.dev.id}"
+    S3_UPLOADS_KEY = "${aws_iam_access_key.dev.id}"
+    S3_UPLOADS_SECRET = "${aws_iam_access_key.dev.secret}"
+    S3_UPLOADS_REGION = "${var.aws_region}"
   }
 }
 
 # Heroku Redis
 resource "heroku_addon" "redis-dev" {
-  app  = "${heroku_app.dev.name}"
+  app = "${heroku_app.dev.name}"
   plan = "heroku-redis:hobby-dev"
 }
 
@@ -80,5 +125,5 @@ resource "heroku_addon" "papertrail-dev" {
 }
 
 # Outputs
-output "git command" { value = "git remote add dev ${heroku_app.dev.git_url} && git push dev" }
+output "heroku git remote" { value = "${heroku_app.dev.git_url}" }
 
