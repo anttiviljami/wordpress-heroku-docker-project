@@ -53,8 +53,8 @@ resource "aws_db_instance" "dev" {
   username = "wordpress"
   password = "${random_id.dev.hex}"
   publicly_accessible = true
-	vpc_security_group_ids   = ["${aws_security_group.default.id}"]
-  skip_final_snapshot = 1
+	vpc_security_group_ids = ["${aws_security_group.default.id}"]
+  final_snapshot_identifier = "${var.project_name}-dev"
 }
 
 # IAM user for S3 bucket
