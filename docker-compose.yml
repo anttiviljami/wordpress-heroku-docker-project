@@ -13,6 +13,8 @@ services:
     links:
       - mysql
       - redis
+    environment:
+      - VIRTUAL_HOST=wordpress.local
 
   shell:
     build:
