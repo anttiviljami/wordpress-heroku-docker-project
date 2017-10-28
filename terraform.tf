@@ -53,7 +53,7 @@ resource "aws_db_instance" "dev" {
   username = "wordpress"
   password = "${random_id.dev.hex}"
   publicly_accessible = true
-	vpc_security_group_ids = ["${aws_security_group.default.id}"]
+  vpc_security_group_ids = ["${aws_security_group.default.id}"]
   final_snapshot_identifier = "${var.project_name}-dev"
 }
 
@@ -70,7 +70,7 @@ resource "aws_iam_access_key" "dev" {
 # S3 bucket for uploads
 resource "aws_s3_bucket" "dev" {
   bucket = "${var.project_name}-dev-uploads"
-	acl = "public-read"
+  acl = "public-read"
   force_destroy = "true"
 }
 
