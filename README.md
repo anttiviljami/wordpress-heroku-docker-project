@@ -10,21 +10,17 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 ## Features
 
 - [x] Bedrock-like modern development environment
-- [x] Deployment to Heroku pipelines
 - [x] Local Heroku-like environment with Docker-compose
-- [x] PHP 7
 - [x] WP-CLI
 - [x] Configurable Nginx
-- [x] Redis Object Cache
 - [x] Travis CI pipeline you can run with Docker
 - [x] PHP Codesniffer with nicer coding standards for WordPress
-- [x] Media Uploads to S3
-- [x] Newrelic APM monitoring
+- [x] Terraform deployment for full WordPress stack provisioning to Heroku & AWS
+- [x] Heroku PHP7 application runtime
+- [x] Heroku Redis Cache
+- [x] AWS S3 for media uploads
+- [x] AWS RDS for MariaDB
 - [x] Papertrail log management
-- [x] Environment management for complete `local`, `development`, `qa` and `production` pipeline
-- [x] [CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/cloudformation.json)
-for provisioning a MariaDB RDS instance and an S3 bucket on AWS
-- [ ] Basic integration tests
 
 ## Local Development
 
