@@ -101,7 +101,7 @@ You can run WP-CLI locally by starting the shell container
 docker-compose run shell
 ```
 
-To run wp-cli in a Heroku instance, just run a temporary bash dyno.
+To run wp-cli in a Heroku instance, just run a temporary dyno.
 
 ```
 heroku run bash
