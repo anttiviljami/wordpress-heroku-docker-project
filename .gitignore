@@ -5,6 +5,9 @@
 vendor/*
 !vendor/.gitkeep
 
+terraform.tfstate.backup
+.terraform
+
 # WordPress core
 htdocs/wordpress
 

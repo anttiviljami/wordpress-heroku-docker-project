@@ -62,34 +62,40 @@ docker-compose up web
 You can now navigate to [`http://localhost:8080`](http://localhost:8080) to
 start working with your local WordPress installation.
 
-## Deploying to Heroku
+## Deploying with Terraform
 
-### Database and S3 Bucket
+To deploy using Terraform, make sure you've prepared Heroku and AWS credentials,
+and you've installed the [Terraform CLI binary](https://www.terraform.io/downloads.html)
+on your system.
 
-Use the included
-[CloudFormation script](https://github.com/anttiviljami/wordpress-heroku-docker-project/blob/master/tools/cloudformation.json)
-to provision a MariaDB instance and an S3 bucket for uploads on AWS.
+You can get your Heroku API key from the Heroku dashboard
+```
+export HEROKU_API_KEY=
+export HEROKU_EMAIL=
+```
 
-<a href="https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=wordpress-heroku&templateURL=https://s3.eu-central-1.amazonaws.com/cf-templates-6kuoc24dql6e-eu-central-1/2017135qFR-cloudformation.json" target="_blank"><img alt="Launch Stack" src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"></a>
+For AWS, create an IAM user with Administrator rights
+```
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+```
 
-The script will output the values needed for Heroku config variables:
+The state of Terraform is managed in S3, so it should automatically sync any
+changes from the remote backend. For this you'll need to manually set up an S3
+bucket in the eu-west-1 region with the name `wp-terraform-backend`
 
-![AWS Cloudformation script output](https://cloud.githubusercontent.com/assets/6105650/26060801/cef914ae-398e-11e7-85d0-c916e88bee37.png)
+```
+terraform init
+terraform apply
+```
 
-### Heroku App
+After this you can push to your newly created Heroku app's git URL to trigger
+a Heroku deployment.
 
-Set up a new app on Heroku for your WordPress project. Use the values generated
-by the Cloudformation script previously
-
-<a href="https://heroku.com/deploy?template=https://github.com/anttiviljami/wordpress-heroku-docker-project" target="_blank"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy"></a>
-
-This is how your project should look like on Heroku:
-
-![Heroku App Dashboard](https://cloud.githubusercontent.com/assets/6105650/26061040/7f62fc42-398f-11e7-82de-a6b9c642fb67.png)
-
-Here's an example of a WordPress instance running on Heroku:
-
-[wp-project-dev.herokuapp.com](https://wp-project-dev.herokuapp.com/)
+```
+git remote add dev https://git.heroku.com/[my-project-name]-dev.git
+git push dev
+```
 
 ## WP-CLI
 
