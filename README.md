@@ -27,6 +27,8 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 
 Install [Docker](https://www.docker.com/)
 
+Install [Node.js](https://nodejs.org/en/download/)
+
 Clone this repo and source set up your environment inside the project root.
 
 ```bash
@@ -41,7 +43,7 @@ Start a shell inside Docker. It might take a moment for the images to download
 and build. This is normal.
 
 ```bash
-docker-compose run shell
+npm run shell
 ```
 
 Now you can run `composer install` inside Docker
@@ -53,7 +55,7 @@ composer install
 Outside the docker shell, you can now start the main process
 
 ```bash
-docker-compose up web
+npm start
 ```
 
 You can now navigate to [`http://localhost:8080`](http://localhost:8080) to
@@ -99,7 +101,7 @@ git push dev
 You can run WP-CLI locally by starting the shell container
 
 ```
-docker-compose run shell
+npm run shell
 ```
 
 To run wp-cli in a Heroku instance, just run a temporary dyno.
@@ -116,5 +118,5 @@ Travis CI will run the `ci` container to test your app. You can do the same
 locally:
 
 ```
-docker-compose up ci
+npm test
 ```
