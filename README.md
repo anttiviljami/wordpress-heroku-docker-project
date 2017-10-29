@@ -16,11 +16,12 @@ The Holy Grail WordPress project template for Heroku deployment and local Docker
 - [x] Travis CI pipeline you can run with Docker
 - [x] PHP Codesniffer with nicer coding standards for WordPress
 - [x] Terraform deployment for full WordPress stack provisioning to Heroku & AWS
-- [x] Heroku PHP7 application runtime
+- [x] Heroku PHP7 & Node 8 application runtime
 - [x] Heroku Redis Cache
 - [x] AWS S3 for media uploads
 - [x] AWS RDS for MariaDB
 - [x] Papertrail log management
+- [x] NPM scripts for ease of use
 
 ## Local Development
 

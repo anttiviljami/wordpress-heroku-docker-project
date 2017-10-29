@@ -102,6 +102,10 @@ EOF
 resource "heroku_app" "dev" {
   name = "${var.project_name}-dev"
   region = "eu"
+  buildpacks = [
+    "heroku/php",
+    "heroku/nodejs"
+  ]
   config_vars {
     WP_ENV = "dev"
     DATABASE_URL = "mysql://wordpress:${random_id.dev.hex}@${aws_db_instance.dev.address}/wordpress"

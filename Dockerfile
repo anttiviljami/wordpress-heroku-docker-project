@@ -9,13 +9,12 @@ ENV PHP_VERSION 7.0.10
 ENV HTTPD_VERSION 2.4.20
 ENV NGINX_VERSION 1.8.1
 ENV COMPOSER_VERSION 1.2.1
+ENV NODE_ENGINE 8.8.1
 
-# Install mysql-client tools for ease of development with WP-CLI
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes mysql-client
+ENV PATH /app/heroku/node/bin:/app/user/node_modules/.bin:$PATH
 
 # Create some needed directories
-RUN mkdir -p /app/.heroku/php /app/.profile.d
+RUN mkdir -p /app/.heroku/php /app/heroku/node /app/.profile.d
 WORKDIR /app/user
 
 # so we can run PHP in here
@@ -79,6 +78,15 @@ RUN sed -i /opcache.validate_timestamps/d /app/.heroku/php/etc/php/conf.d/010-ex
 # Install Composer
 RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-cedar-16-stable/composer-$COMPOSER_VERSION.tar.gz | tar xz -C /app/.heroku/php
 RUN composer self-update
+
+# Install Node.js
+RUN curl -s https://s3pository.heroku.com/node/v$NODE_ENGINE/node-v$NODE_ENGINE-linux-x64.tar.gz | tar --strip-components=1 -xz -C /app/heroku/node
+
+# Export the node path in .profile.d
+RUN echo "export PATH=\"/app/heroku/node/bin:/app/user/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
+
+# Install yarn package manager
+RUN npm install --global yarn
 
 # copy dep files first so Docker caches the install step if they don't change
 ONBUILD COPY composer.lock /app/user/
