@@ -26,6 +26,7 @@
   "scripts": {
     "start": "docker-compose up web",
     "test": "docker-compose run ci",
-    "shell": "docker-compose run shell"
+    "shell": "docker-compose run shell",
+    "lint": "vendor/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p ."
   }
 }

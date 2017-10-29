@@ -16,6 +16,9 @@ else
     source .env.test || EXIT_STATUS=$?
 fi
 
+# Run npm install
+npm install
+
 # Run composer install
 composer install --no-interaction
 
@@ -23,7 +26,7 @@ composer install --no-interaction
 [[ -f vendor/wpcs/composer.json ]] || composer create-project wp-coding-standards/wpcs:dev-master --no-dev --no-interaction vendor/wpcs
 
 echo -e "\n------ Linting code...\n"
-vendor/wpcs/vendor/bin/phpcs --extensions=php --standard=./phpcs.xml -n -p . || EXIT_STATUS=$?
+npm run lint || EXIT_STATUS=$?
 
 exit $EXIT_STATUS
 
