@@ -49,7 +49,7 @@ npm run shell
 Now you can run `composer install` inside Docker
 
 ```bash
-composer install
+composer install && exit
 ```
 
 Outside the docker shell, you can now start the main process
