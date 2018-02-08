@@ -56,6 +56,15 @@ resource "aws_s3_bucket_policy" "dev" {
         "${aws_s3_bucket.dev.arn}",
         "${aws_s3_bucket.dev.arn}/*"
       ]
+    },
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [ "s3:GetObject" ],
+      "Resource": [
+        "${aws_s3_bucket.dev.arn}",
+        "${aws_s3_bucket.dev.arn}/*"
+      ]
     }
   ]
 }
