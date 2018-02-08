@@ -51,8 +51,8 @@
   },
   "scripts": {
     "pre-install-cmd": [
-      "test -f /app/.heroku/mysql-client-core.deb || wget http://security.ubuntu.com/ubuntu/pool/main/m/mysql-5.7/mysql-client-core-5.7_5.7.20-0ubuntu0.16.04.1_amd64.deb -qO /app/.heroku/mysql-client-core.deb",
-      "test -f /app/.heroku/mysql-core.deb || wget http://security.ubuntu.com/ubuntu/pool/main/m/mysql-5.7/mysql-client-5.7_5.7.20-0ubuntu0.16.04.1_amd64.deb -qO /app/.heroku/mysql-client.deb",
+      "test -f /app/.heroku/mysql-client-core.deb || wget http://security.ubuntu.com/ubuntu/pool/main/m/mysql-5.7/mysql-client-core-5.7_5.7.21-1ubuntu1_amd64.deb -qO /app/.heroku/mysql-client-core.deb",
+      "test -f /app/.heroku/mysql-client.deb || wget http://security.ubuntu.com/ubuntu/pool/main/m/mysql-5.7/mysql-client-5.7_5.7.21-1ubuntu1_amd64.deb -qO /app/.heroku/mysql-client.deb",
       "dpkg -x /app/.heroku/mysql-client.deb /app/.heroku/mysql; dpkg -x /app/.heroku/mysql-client-core.deb /app/.heroku/mysql",
       "chmod +x /app/.heroku/mysql/usr/bin/* && mv /app/.heroku/mysql/usr/bin/* /app/.heroku/php/bin/"
     ],
