@@ -24,7 +24,7 @@ else
   TARGET_URL=`heroku run wp option get siteurl -r $2`;
 fi
 
-echo "You are about to overwrite the database for $SOURCE_URL with contents from $TARGET_URL";
+echo "You are about to overwrite the database for $TARGET_URL with contents from $SOURCE_URL";
 read -p "Are you sure you want to do this? (y/n)
 ";
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
