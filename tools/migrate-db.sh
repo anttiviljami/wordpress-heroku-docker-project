@@ -46,5 +46,13 @@ fi
 
 eval "$EXPORT_CMD | $IMPORT_CMD"
 
+# Flush cache in target
+if [[ $2 == 'local' ]]; then
+  docker-compose run --rm shell bash -c ". .env && wp cache flush"
+else
+  heroku run wp cache flush -r $2
+fi
+
+
 echo "Success!"
 
