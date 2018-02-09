@@ -16,13 +16,13 @@ UPLOADS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../htdocs/wp-content/uploads" 
 if [[ $1 == 'local' ]]; then
   SOURCE_URL=$UPLOADS_DIR
 else
-  SOURCE_URL=s3://`heroku config:get S3_UPLOADS_BUCKET -r $1`;
+  SOURCE_URL=s3://`heroku config:get S3_UPLOADS_BUCKET -r $1`/uploads;
 fi;
 
 if [[ $2 == 'local' ]]; then
   TARGET_URL=$UPLOADS_DIR
 else
-  TARGET_URL=s3://`heroku config:get S3_UPLOADS_BUCKET -r $2`;
+  TARGET_URL=s3://`heroku config:get S3_UPLOADS_BUCKET -r $2`/uploads;
 fi;
 
 echo "You are about to copy all files from $SOURCE_URL to $TARGET_URL";
