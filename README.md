@@ -29,6 +29,8 @@ Install [Docker](https://www.docker.com/)
 
 Install [Node.js](https://nodejs.org/en/download/)
 
+Install [AWS-CLI](https://aws.amazon.com/cli/)
+
 Clone this repo and source set up your environment inside the project root.
 
 ```bash
