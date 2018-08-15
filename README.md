@@ -31,6 +31,8 @@ Install [Node.js](https://nodejs.org/en/download/)
 
 Install [AWS-CLI](https://aws.amazon.com/cli/)
 
+Install [Heroku-CLI](https://devcenter.heroku.com/articles/heroku-cli)
+
 Clone this repo and source set up your environment inside the project root.
 
 ```bash
