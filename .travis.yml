@@ -13,7 +13,6 @@ cache:
     - $HOME/.composer/vendor
     - vendor
 before_install:
-  - cp docker-compose-travis.yml docker-compose.yml
   - docker-compose -v
   - docker -v
 install:
