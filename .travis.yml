@@ -7,11 +7,6 @@ php:
   - 7.1
 env:
   - WP_ENV=testing
-cache:
-  directories:
-    - $HOME/.composer/cache
-    - $HOME/.composer/vendor
-    - vendor
 before_install:
   - docker-compose -v
   - docker -v
