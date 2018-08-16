@@ -101,6 +101,7 @@
 
     <!-- Exclude indentation rules and use PEAR.WhiteSpace.ScopeIndent instead -->
     <exclude name="Generic.WhiteSpace.ScopeIndent" />
+    <exclude name="WordPress.WhiteSpace.PrecisionAlignment" />
 
     <!-- Use spaces instead of tabs -->
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />

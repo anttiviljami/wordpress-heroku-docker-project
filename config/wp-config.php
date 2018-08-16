@@ -2,7 +2,7 @@
 /**
  * This file contains WordPress config and replaces the usual wp-config.php
  */
-$root_dir = dirname( __DIR__ );
+$root_dir    = dirname( __DIR__ );
 $webroot_dir = $root_dir . '/htdocs';
 
 /**
@@ -27,7 +27,7 @@ define( 'WP_ENV', strtolower( env( 'WP_ENV' ) ) ?: 'development' );
 
 /**
  * Set URLs for WP
- * SERVER_NAME is used because wordpress uses it by default in some contexts and we
+ * SERVER_NAME is used because WordPress uses it by default in some contexts and we
  * don't want to have million different variables to set.
  *
  * Deduct them from request parameters if developer didn't set the SERVER_NAME.
@@ -44,7 +44,8 @@ if ( env( 'WP_HOME' ) && env( 'WP_SITEURL' ) ) {
  * WordPress needs $_SERVER['HTTPS'] for is_ssl() in many places
  */
 if ( ! isset( $_SERVER['HTTPS'] ) ) {
-  $_SERVER['HTTPS'] = $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ? 'on' : 'off';
+  $_SERVER['HTTPS'] = isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] )
+    && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ? 'on' : 'off';
 }
 
 /**
@@ -120,7 +121,7 @@ define( 'WP_MEMORY_LIMIT', env( 'PHP_MEMORY_LIMIT' ) ?: '128M' );
 $env_config = __DIR__ . '/env/' . WP_ENV . '.php';
 
 if ( file_exists( $env_config ) ) {
-  include_once( $env_config );
+  include_once $env_config;
 }
 
 /**
