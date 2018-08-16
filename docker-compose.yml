@@ -10,11 +10,11 @@ services:
       - 8080:8080
     volumes:
       - .:/app/user:rw,cached
-    links:
-      - mysql
-      - redis
     environment:
       - VIRTUAL_HOST=wordpress.local
+    depends_on:
+      - mysql
+      - redis
 
   shell:
     build:
@@ -24,7 +24,7 @@ services:
     working_dir: /app/user
     volumes:
       - .:/app/user:rw,cached
-    links:
+    depends_on:
       - mysql
       - redis
 
@@ -36,7 +36,7 @@ services:
     working_dir: /app/user
     volumes:
       - .:/app/user:rw,cached
-    links:
+    depends_on:
       - mysql
       - redis
 
@@ -54,11 +54,11 @@ services:
     image: clue/adminer:latest
     ports:
       - 8081:80
-    links:
+    depends_on:
       - mysql
 
   mysql:
-    image: mysql:latest
+    image: mysql:5.7
     volumes:
       - mysqldata:/var/lib/mysql
     ports:

@@ -24,6 +24,7 @@
     "npm": "^5.4.2"
   },
   "scripts": {
+    "dev": "npm run start",
     "start": "docker-compose up web",
     "test": "docker-compose run ci",
     "shell": "docker-compose run shell",
