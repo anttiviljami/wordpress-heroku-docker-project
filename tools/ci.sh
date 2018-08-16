@@ -20,7 +20,7 @@ fi
 npm install
 
 # Run composer install
-composer install --no-interaction
+composer install --dev --no-interaction
 
 echo -e "\n------ Linting code...\n"
 npm run lint || EXIT_STATUS=$?

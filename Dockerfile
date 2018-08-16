@@ -5,10 +5,10 @@ FROM heroku/heroku:16
 ENV PORT 3000
 
 # Which versions?
-ENV PHP_VERSION 7.0.10
+ENV PHP_VERSION 7.2.8
 ENV HTTPD_VERSION 2.4.20
 ENV NGINX_VERSION 1.8.1
-ENV COMPOSER_VERSION 1.2.1
+ENV COMPOSER_VERSION 1.7.1
 ENV NODE_ENGINE 8.8.1
 
 ENV PATH /app/heroku/node/bin:/app/user/node_modules/.bin:$PATH
@@ -39,13 +39,13 @@ user nobody root;\n\
 " >> /app/.heroku/php/etc/nginx/nginx.conf
 
 # Install PHP
-RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-cedar-16-stable/php-$PHP_VERSION.tar.gz | tar xz -C /app/.heroku/php
+RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-heroku-16-stable/php-$PHP_VERSION.tar.gz | tar xz -C /app/.heroku/php
 # Config
 RUN mkdir -p /app/.heroku/php/etc/php/conf.d
 RUN curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/master/support/build/_conf/php/php.ini > /app/.heroku/php/etc/php/php.ini
 
 # Install Redis extension for PHP 7
-RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-cedar-16-stable/extensions/no-debug-non-zts-20151012/redis-3.0.0.tar.gz | tar xz -C /app/.heroku/php
+RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-heroku-16-stable/extensions/no-debug-non-zts-20170718/redis-4.1.1.tar.gz | tar xz -C /app/.heroku/php
 
 # Enable all optional exts
 RUN echo "\n\
@@ -76,7 +76,7 @@ extension=xsl.so\n\
 RUN sed -i /opcache.validate_timestamps/d /app/.heroku/php/etc/php/conf.d/010-ext-zend_opcache.ini
 
 # Install Composer
-RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-cedar-16-stable/composer-$COMPOSER_VERSION.tar.gz | tar xz -C /app/.heroku/php
+RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-heroku-16-stable/composer-$COMPOSER_VERSION.tar.gz | tar xz -C /app/.heroku/php
 RUN composer self-update
 
 # Install Node.js

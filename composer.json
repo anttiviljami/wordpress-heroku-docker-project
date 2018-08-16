@@ -20,7 +20,7 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.2",
     "ext-gd": "*",
     "ext-redis": "*",
     "johnpbloch/wordpress": "*",
@@ -35,8 +35,8 @@
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*",
-    "dealerdirect/phpcodesniffer-composer-installer": "*",
-    "wp-coding-standards/wpcs": "*"
+    "wp-coding-standards/wpcs": "^1.0.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "*"
   },
   "extra": {
     "installer-paths": {
