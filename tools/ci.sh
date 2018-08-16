@@ -22,9 +22,6 @@ npm install
 # Run composer install
 composer install --no-interaction
 
-# Install WordPress coding standards ruleset for WordPress if not yet installed
-[[ -f vendor/wpcs/composer.json ]] || composer create-project wp-coding-standards/wpcs:dev-master --no-dev --no-interaction vendor/wpcs
-
 echo -e "\n------ Linting code...\n"
 npm run lint || EXIT_STATUS=$?
 

@@ -34,7 +34,9 @@
     "humanmade/s3-uploads": "*"
   },
   "require-dev": {
-    "heroku/heroku-buildpack-php": "*"
+    "heroku/heroku-buildpack-php": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "*",
+    "wp-coding-standards/wpcs": "*"
   },
   "extra": {
     "installer-paths": {
