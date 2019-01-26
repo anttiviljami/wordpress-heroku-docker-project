@@ -3,10 +3,6 @@
 
 The Holy Grail WordPress project template for Heroku deployment and local Docker development.
 
-<a href="https://youtu.be/ClXEgS-Z-pI" target="_blank"><img alt="Play Video" width=720 src="https://cloud.githubusercontent.com/assets/6105650/26076788/9cc057b6-39c2-11e7-8339-082ab9654751.png"></a>
-
-[Video Tutorial](https://youtu.be/ClXEgS-Z-pI) available on YouTube
-
 ## Features
 
 - [x] Bedrock-like modern development environment
