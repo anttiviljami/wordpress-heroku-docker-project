@@ -59,20 +59,19 @@ services:
 
   mysql:
     image: mysql:5.7
-    volumes:
-      - mysqldata:/var/lib/mysql
+    command: mysqld --sql_mode=""
+    ports:
+      - '${DATABASE_PORT:-5432}:3306'
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: password
-#   ports:
-#     - '${DATABASE_PORT:-5432}:5432'
 
   redis:
     image: redis:3.2
-#   ports:
-#     - '${REDIS_PORT:-6379}:6379'
+#    ports:
+#      - '${REDIS_PORT:-6379}:6379'
 
 volumes:
   mysqldata: {}
