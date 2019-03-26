@@ -62,6 +62,8 @@ services:
     command: mysqld --sql_mode=""
     ports:
       - '${DATABASE_PORT:-5432}:3306'
+    volumes:
+      - mysqldata:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: wordpress
