@@ -52,8 +52,13 @@ RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-heroku-16-st
 # Install ImageMagick extension for PHP
 RUN curl --silent --location https://lang-php.s3.amazonaws.com/dist-heroku-16-stable/extensions/no-debug-non-zts-20180731/imagick-$IMAGICK_EXT_VERSION.tar.gz | tar xz -C /app/.heroku/php
 
-# Enable all optional exts
+# Enable all optional exts & change upload settings
 RUN echo "\n\
+upload_max_filesize = 100M \n\
+post_max_size = 100M \n\
+memory_limit = 200M \n\
+max_execution_time = 60 \n\
+max_input_time = 60 \n\
 user_ini.cache_ttl = 30 \n\
 opcache.enable_cli = 1 \n\
 opcache.validate_timestamps = 1 \n\
